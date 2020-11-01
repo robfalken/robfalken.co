@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    { resolve: "gatsby-plugin-graphql-loader" },
     {
       resolve: "gatsby-source-graphql",
       options: {
