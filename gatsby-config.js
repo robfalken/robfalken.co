@@ -5,6 +5,19 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GraphCMS",
+        fieldName: "graphcms",
+        url: process.env.GRAPHCMS_ENDPOINT,
+        // HTTP headers
+        headers: {
+          // Learn about environment variables: https://gatsby.dev/env-vars
+          // Authorization: `Bearer ${process.env.TOKEN}`,
+        },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
