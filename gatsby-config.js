@@ -1,11 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Rob Falken`,
+    description: `Tech, business, and everything in between.`,
+    author: `@robfalken`,
   },
   plugins: [
-    { resolve: "gatsby-plugin-graphql-loader" },
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-graphql",
       options: {
@@ -19,7 +21,17 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          // https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Merriweather:ital@0;1&display=swap
+          "Lora:400,700",
+          "Merriweather:400i,700",
+        ],
+        display: "swap",
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -45,4 +57,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

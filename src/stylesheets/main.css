@@ -1,0 +1,13 @@
+.content ul {
+  @apply my-4;
+  @apply pl-5;
+  list-style-type: disc;
+}
+
+.content li {
+  @apply mb-2;
+}
+
+.content p {
+  @apply mb-3;
+}

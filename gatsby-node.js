@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require("path");
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -14,18 +14,18 @@ query GetPosts {
       slug
     }
   }
-}`
+}`;
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const { data } = await graphql(GetPosts)
+  const { data } = await graphql(GetPosts);
 
-  data.graphcms.posts.map(post => {
+  data.graphcms.posts.map((post) => {
     createPage({
       path: post.slug,
-      component: path.resolve("./src/components/post.js"),
+      component: path.resolve("./src/components/Post.tsx"),
       context: post,
-    })
-  })
-}
+    });
+  });
+};
