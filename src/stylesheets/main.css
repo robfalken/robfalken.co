@@ -1,3 +1,19 @@
+body {
+  @apply font-body;
+  @apply text-gray-800;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-display;
+  @apply font-black;
+  @apply text-gray-900;
+}
+
 .content ul {
   @apply my-4;
   @apply pl-5;
@@ -6,8 +22,10 @@
 
 .content li {
   @apply mb-2;
+  @apply text-lg;
 }
 
 .content p {
-  @apply mb-3;
+  @apply mb-5;
+  @apply text-lg;
 }

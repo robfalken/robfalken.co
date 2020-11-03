@@ -9,6 +9,28 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-react-helmet",
     {
+      resolve: `gatsby-plugin-favicon`,
+      options: {
+        logo: "./src/images/favicon.png",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "G-HPBP37T3ZJ",
+        respectDNT: true,
+        anonymize: true,
+        // Avoids sending pageview hits from custom paths
+        exclude: ["/preview/**"],
+        // Delays sending pageview hits on route update (in milliseconds)
+        pageTransitionDelay: 0,
+        // Defers execution of google analytics script after page load
+        defer: false,
+        // Any additional optional fields
+        cookieDomain: "robfalken.co",
+      },
+    },
+    {
       resolve: "gatsby-source-graphql",
       options: {
         typeName: "GraphCMS",
@@ -24,11 +46,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          // https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Merriweather:ital@0;1&display=swap
-          "Lora:400,700",
-          "Merriweather:400i,700",
-        ],
+        fonts: ["Lora:400,700", "Merriweather:400,400i,700"],
         display: "swap",
       },
     },
@@ -44,13 +62,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `robfalken.co`,
+        short_name: `robfalken`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `/favicon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

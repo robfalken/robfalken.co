@@ -11,6 +11,9 @@ export const query = graphql`
         content {
           html
         }
+        coverImage {
+          url
+        }
       }
     }
   }
@@ -23,7 +26,8 @@ export default ({
 }) => {
   return (
     <Layout>
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+      <img src={post.coverImage.url} className="py-8" />
       <div
         className="content"
         dangerouslySetInnerHTML={{ __html: post.content.html }}

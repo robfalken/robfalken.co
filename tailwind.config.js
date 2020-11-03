@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         body: ["Merriweather"],
+        display: ["Lora"],
       },
     },
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import { Header } from "./Header";
 
 interface IProps {
   children: React.ReactNode;
@@ -6,9 +7,11 @@ interface IProps {
 
 export const Layout = ({ children }: IProps): React.ReactElement => {
   return (
-    <div>
-      <header className="container mx-auto">Rob Falken</header>
-      <main className="container mx-auto">{children}</main>
+    <div className="border-t-2 border-orange-400">
+      <div className="container mx-auto max-w-3xl p-4">
+        <Header />
+        <main>{children}</main>
+      </div>
     </div>
   );
 };
