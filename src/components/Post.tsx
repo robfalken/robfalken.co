@@ -26,8 +26,8 @@ export default ({
 }) => {
   return (
     <Layout>
-      <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-      <img src={post.coverImage.url} className="py-8" />
+      <h1 className="mb-4 text-3xl font-bold">{post.title}</h1>
+      {post.coverImage && <img src={post.coverImage.url} className="py-8" />}
       <div
         className="content"
         dangerouslySetInnerHTML={{ __html: post.content.html }}
