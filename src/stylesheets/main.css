@@ -29,3 +29,12 @@ h6 {
   @apply mb-5;
   @apply text-lg;
 }
+
+.language-bash, .language-ts {
+  background-color: #272822;
+  @apply p-2 my-6 rounded;
+}
+
+.language-bash p, .language-ts p {
+  @apply mb-0;
+}
