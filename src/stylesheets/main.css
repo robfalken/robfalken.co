@@ -14,27 +14,19 @@ h6 {
   @apply text-gray-900;
 }
 
-.content ul {
+main ul {
   @apply my-4;
   @apply pl-5;
   list-style-type: disc;
 }
 
-.content li {
+main li {
   @apply mb-2;
   @apply text-lg;
 }
 
-.content p {
+main p {
   @apply mb-5;
   @apply text-lg;
 }
 
-.language-bash, .language-ts {
-  background-color: #272822;
-  @apply p-2 my-6 rounded;
-}
-
-.language-bash p, .language-ts p {
-  @apply mb-0;
-}
