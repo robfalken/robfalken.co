@@ -30,3 +30,15 @@ main p {
   @apply text-lg;
 }
 
+
+a.excerpt-link:hover .fancy-link {
+  background-image: linear-gradient(to right, #f6ad55 100%, transparent 0%);
+  background-position: 0 0.94em;
+  background-repeat: repeat-x;
+  background-size: 10px 5px;
+  text-decoration: none;
+}
+
+a.excerpt-link:hover {
+  box-shadow: 0 0 0px 10px #f7fafc;
+}

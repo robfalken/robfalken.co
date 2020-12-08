@@ -2,6 +2,8 @@
 slug: "/always-set-up-a-landing-page-before-building-a-product"
 date: "2020-10-30"
 title: "Why you should always set up a pre-launch landing page before building a product"
+image: "../images/launch-landing-page.png"
+excerpt: "If you are anything like me, when you have a new idea for a product, you just want to dive straight into builder mode. That is usually not the best idea. In this article, I will give my rationale for why you should always start by hammering out a landing page. Only when you are happy with said landing page should you start building the actual product."
 ---
 
 If you are anything like me, you want to dive straight into builder mode when you have a new idea for a product. That is usually not the best idea. This article will give my rationale for why you should always start by hammering out a landing page. Only when you are happy with said landing page should you start building the actual product.

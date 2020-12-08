@@ -20,13 +20,10 @@ module.exports = {
         trackingId: "G-HPBP37T3ZJ",
         respectDNT: true,
         anonymize: true,
-        // Avoids sending pageview hits from custom paths
         exclude: ["/preview/**"],
-        // Delays sending pageview hits on route update (in milliseconds)
         pageTransitionDelay: 0,
-        // Defers execution of google analytics script after page load
         defer: false,
-        // Any additional optional fields
+        storeGac: false,
         cookieDomain: "robfalken.co",
       },
     },
