@@ -13,7 +13,7 @@ Okay, let's get to it!
 
 If you haven't done so already, you will have to install the CDK, which you can quickly achieve using npm (or yarn).
 
-npm install -g aws-cdk
+`npm install -g aws-cdk`
 
 As soon as you have the CDK installed on your machine, you can initialize a new project. I will call mine robfalken.
 
@@ -49,7 +49,27 @@ Bring up your editor of choice and open up the file that holds your stack.
 
 Whenever you want to create some AWS resources, it is as easy as instantiating the construct of the service you wish to use and then passing in some configuration options. So to set up a VPC and an ECS cluster that would be something like this.
 
-[Code snippet]
+```ts
+import * as cdk from "@aws-cdk/core";
+import * as ec2 from "@aws-cdk/aws-ec2";
+import * as ecs from "@aws-cdk/aws-ecs";
+import { ApplicationStack } from "./application-stack";
+
+export class RobfalkenStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const vpc = new ec2.Vpc(this, "VPC", {
+      cidr: "10.0.0.0/24",
+      maxAzs: 2,
+    });
+
+    const cluster = new ecs.Cluster(this, "ECSCluster", {
+      vpc,
+    });
+  }
+}
+```
 
 First, we create the VPC where we are going to put all of our resources. We will need to store it as a variable because we will pass it in as a reference into other constructs as we advance. We are also passing along some configurations. The `cidr` property sets the IP range for our subnets in this network. I won't go into more detail on this, but you can read up on CIDR blocks and networking if you are interested in further reading. We also set the max number of availability zones to two. You can, of course, set it to a higher number. But if you want to set up a load balancer, you will need at least two AZs.
 
@@ -65,7 +85,43 @@ All right, we need the ECR constructs to fetch the image from the repo, so let's
 
 With that out of the way, create a new file `lib/application-stack.ts`
 
-[code snippet]
+```ts
+import * as cdk from "@aws-cdk/core";
+import * as ecs from "@aws-cdk/aws-ecs";
+import * as ecr from "@aws-cdk/aws-ecr";
+import * as ecs_patterns from "@aws-cdk/aws-ecs-patterns";
+
+interface IProps extends cdk.NestedStackProps {
+  cluster: ecs.Cluster;
+}
+
+export class ApplicationStack extends cdk.NestedStack {
+  constructor(scope: cdk.Construct, id: string, props: IProps) {
+    super(scope, id, props);
+
+    const { cluster } = props;
+
+    const repo = ecr.Repository.fromRepositoryName(
+      this,
+      "Repository",
+      "dummy-service"
+    );
+
+    new ecs_patterns.ApplicationLoadBalancedFargateService(
+      this,
+      "FargateService",
+      {
+        cluster,
+        publicLoadBalancer: true,
+        taskImageOptions: {
+          image: ecs.ContainerImage.fromEcrRepository(repo),
+          containerPort: 3000,
+        },
+      }
+    );
+  }
+}
+```
 
 Here we are creating a nested stack that will be nested under our "root" stack. We need access to the ECS cluster because we will put our service into it, so we're accepting the cluster as a property.
 
@@ -76,6 +132,35 @@ We are cheating a little bit here, using the `ecs_patterns` module that provides
 For our very simple example here, it's perfect to use the ECS patterns. It allows us to get up and running with very little code. One of the downsides here is that we can not re-use our load balancer if we add more services. We would have to create one load balancer per service, which is totally unnecessary, especially since they come with a relatively hefty price tag. I will cover how to set up your own, re-usable, load balancer with custom DNS records, and HTTPS listener in a later article. Stay tuned!
 
 Alright, let's get back on topic.
+
+Now that you have built a stack for your application, you need to instantiate it from your base stack, so let's go back to `lib/robfalken-stack.ts` and add a tiny piece of code to it.
+
+```ts
+import * as cdk from "@aws-cdk/core";
+import * as ec2 from "@aws-cdk/aws-ec2";
+import * as ecs from "@aws-cdk/aws-ecs";
+import { ApplicationStack } from "./application-stack";
+
+export class RobfalkenStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const vpc = new ec2.Vpc(this, "VPC", {
+      cidr: "10.0.0.0/24",
+      maxAzs: 2,
+    });
+
+    const cluster = new ecs.Cluster(this, "ECSCluster", {
+      vpc,
+    });
+
+    // This part is new
+    new ApplicationStack(this, "Application", {
+      cluster,
+    });
+  }
+}
+```
 
 At this point, you will need to bootstrap your stack. Luckily, that's just one command. Bootstrapping sets up an S3 bucket for access policies and other necessary assets to support your stack. If you are curious, you can read up on the details here https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html
 
@@ -94,7 +179,8 @@ Oh, it finished! That means your application is now live and accepting traffic. 
 That's it for this guide. I hope this article helped you get started and see that the AWS CDK is a pretty straightforward tool. Next time I will dig deeper into the subject and hopefully get a little closer to a realistic, production-ready example.
 
 Some topics I hope to cover in this CDK series are
-Re-usable, HTTPS-enabled load balancer with custom DNS
-How to set up a CI pipeline
-Scheduling Lambda (or Fargate) tasks
-Some tips that will save you migraines
+
+* Re-usable, HTTPS-enabled load balancer with custom DNS
+* How to set up a CI pipeline
+* Scheduling Lambda (or Fargate) tasks
+* Some tips that will save you migraines

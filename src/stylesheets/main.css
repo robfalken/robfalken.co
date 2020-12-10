@@ -42,3 +42,11 @@ a.excerpt-link:hover .fancy-link {
 a.excerpt-link:hover {
   box-shadow: 0 0 0px 10px #f7fafc;
 }
+
+code:not([class]), code[class=""] {
+  @apply p-1 text-sm text-gray-700 bg-gray-200 border border-gray-300 rounded;
+}
+
+.code-toolbar {
+  @apply my-8;
+}
