@@ -7,25 +7,38 @@ const path = require("path");
 
 // You can delete this file if you're not using it
 
-const GetPosts = `
-query GetPosts {
-  graphcms {
-    posts {
-      slug
-    }
-  }
-}`;
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const { data } = await graphql(GetPosts);
-
-  data.graphcms.posts.map((post) => {
+  const result = await graphql(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+      ) {
+        edges {
+          node {
+            frontmatter {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+  // Handle errors
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
+  }
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: post.slug,
-      component: path.resolve("./src/components/Post.tsx"),
-      context: post,
+      path: node.frontmatter.slug,
+      component: require.resolve("./src/templates/Markdown.tsx"),
+      context: {
+        // additional data can be passed via context
+        slug: node.frontmatter.slug,
+      },
     });
   });
 };

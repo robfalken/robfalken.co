@@ -14,18 +14,39 @@ h6 {
   @apply text-gray-900;
 }
 
-.content ul {
+main ul {
   @apply my-4;
   @apply pl-5;
   list-style-type: disc;
 }
 
-.content li {
+main li {
   @apply mb-2;
   @apply text-lg;
 }
 
-.content p {
+main p {
   @apply mb-5;
   @apply text-lg;
+}
+
+
+a.excerpt-link:hover .fancy-link {
+  background-image: linear-gradient(to right, #f6ad55 100%, transparent 0%);
+  background-position: 0 0.94em;
+  background-repeat: repeat-x;
+  background-size: 10px 5px;
+  text-decoration: none;
+}
+
+a.excerpt-link:hover {
+  box-shadow: 0 0 0px 10px #f7fafc;
+}
+
+code:not([class]), code[class=""] {
+  @apply p-1 text-sm text-gray-700 bg-gray-200 border border-gray-300 rounded;
+}
+
+.code-toolbar {
+  @apply my-8;
 }

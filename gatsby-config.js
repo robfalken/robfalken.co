@@ -20,13 +20,10 @@ module.exports = {
         trackingId: "G-HPBP37T3ZJ",
         respectDNT: true,
         anonymize: true,
-        // Avoids sending pageview hits from custom paths
         exclude: ["/preview/**"],
-        // Delays sending pageview hits on route update (in milliseconds)
         pageTransitionDelay: 0,
-        // Defers execution of google analytics script after page load
         defer: false,
-        // Any additional optional fields
+        storeGac: false,
         cookieDomain: "robfalken.co",
       },
     },
@@ -74,5 +71,13 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/markdown-pages`,
+        name: `markdown-pages`,
+      },
+    },
+    `gatsby-transformer-remark`,
   ],
 };

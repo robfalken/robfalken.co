@@ -1,30 +1,44 @@
 import React from "react";
 import { Layout } from "../components/Layout";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import SEO from "../components/seo";
-import { PostExcerpt } from "../components/PostExcerpt";
+import { pipe, pluck, path } from "ramda";
 
 export const query = graphql`
   query ListPosts {
-    graphcms {
-      posts {
-        slug
-        title
-        excerpt
+    allMarkdownRemark {
+      nodes {
+        frontmatter {
+          slug
+          date
+          title
+          excerpt
+        }
       }
     }
   }
 `;
 
-const IndexPage = ({ data }) => {
-  const { posts } = data.graphcms;
+const getPosts = pipe(
+  path(["allMarkdownRemark", "nodes"]),
+  pluck("frontmatter")
+);
 
+const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      {posts.map((post) => (
-        <div key={post.slug}>
-          <PostExcerpt post={post} />
+      {getPosts(data).map(({ slug, title, excerpt }) => (
+        <div key={slug} className="mb-16">
+          <Link
+            to={slug}
+            className="block group hover:bg-gray-100 excerpt-link"
+          >
+            <h2 className="my-4 text-3xl">
+              <span className="fancy-link">{title}</span>
+            </h2>
+            <p className="group-hover:text-black">{excerpt}</p>
+          </Link>
         </div>
       ))}
     </Layout>

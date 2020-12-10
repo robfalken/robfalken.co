@@ -1,0 +1,11 @@
+{
+  "presets": ["babel-preset-gatsby"],
+  "plugins": [
+    ["prismjs", {
+      "languages": ["bash", "ts"],
+      "plugins": ["show-language"],
+      "theme": "okaidia",
+      "css": true
+    }]
+  ]
+}
