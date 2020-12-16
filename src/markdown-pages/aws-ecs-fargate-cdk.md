@@ -1,5 +1,5 @@
 ---
-slug: "/fargate-aws-ecs-using-cdk"
+slug: "/fargate-on-aws-ecs-using-cdk"
 date: "2020-12-16"
 title: "Set up a Fargate task in AWS ECS using the CDK"
 excerpt: "This article will walk you through how to get your application up and running as a Fargate task in the AWS Elastic Container Service using nothing but code."
