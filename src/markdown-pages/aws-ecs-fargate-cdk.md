@@ -1,7 +1,7 @@
 ---
-slug: "/fargate-on-aws-ecs-using-cdk"
+slug: "/fargate-aws-ecs-using-cdk"
 date: "2020-12-16"
-title: "Set up Fargate on AWS ECS using the CDK"
+title: "Set up a Fargate task in AWS ECS using the CDK"
 excerpt: "This article will walk you through how to get your application up and running as a Fargate task in the AWS Elastic Container Service using nothing but code."
 ---
 
@@ -79,7 +79,7 @@ Now, if you run `cdk deploy`, you will soon see your very own Elastic Container 
 
 An ECS cluster, of course, isn't worth a lot without anything running within it, so let's address that now!
 
-First, you will need a dockerized application hosted in the Elastic Container Registry (ECR) for this guide. I will write-up and link to it later, but I will assume that you already have that set up for now.
+First, you will need a dockerized application hosted in the Elastic Container Registry (ECR) for this guide. If you don't have one prepared already, you can follow this guide on [how to set it up](/aws-elastic-container-registry-repo).
 
 All right, we need the ECR constructs to fetch the image from the repo, so let's first run `npm i @aws-cdk/aws-ecr`
 
