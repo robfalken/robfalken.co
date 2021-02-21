@@ -27,19 +27,19 @@ module.exports = {
         cookieDomain: "robfalken.co",
       },
     },
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        typeName: "GraphCMS",
-        fieldName: "graphcms",
-        url: process.env.GRAPHCMS_ENDPOINT,
-        // HTTP headers
-        headers: {
-          // Learn about environment variables: https://gatsby.dev/env-vars
-          // Authorization: `Bearer ${process.env.TOKEN}`,
-        },
-      },
-    },
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     typeName: "GraphCMS",
+    //     fieldName: "graphcms",
+    //     url: process.env.GRAPHCMS_ENDPOINT,
+    //     // HTTP headers
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       // Authorization: `Bearer ${process.env.TOKEN}`,
+    //     },
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {

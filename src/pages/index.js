@@ -2,7 +2,7 @@ import React from "react";
 import { Layout } from "../components/Layout";
 import { graphql, Link } from "gatsby";
 import SEO from "../components/seo";
-import { pipe, pluck, path } from "ramda";
+import { pipe, path } from "ramda";
 import { PostTitle } from "../components/PostTitle";
 
 export const query = graphql`
