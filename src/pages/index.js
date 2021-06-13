@@ -7,7 +7,10 @@ import { PostTitle } from "../components/PostTitle";
 
 export const query = graphql`
   query ListPosts {
-    allMarkdownRemark(filter: { frontmatter: { listed: { ne: false } } }) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { frontmatter: { listed: { ne: false } } }
+    ) {
       nodes {
         timeToRead
         frontmatter {

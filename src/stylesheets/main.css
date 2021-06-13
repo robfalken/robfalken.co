@@ -38,6 +38,12 @@ main p a:hover {
   @apply text-orange-700 no-underline
 }
 
+main h2 {
+  @apply text-2xl;
+  @apply mb-2;
+  @apply mt-8;
+}
+
 
 a.excerpt-link:hover .fancy-link {
   background-image: linear-gradient(to right, #f6ad55 100%, transparent 0%);
