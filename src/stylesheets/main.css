@@ -44,6 +44,22 @@ main h2 {
   @apply mt-8;
 }
 
+main h2 a {
+  background-image: linear-gradient(to right, rgb(203, 213, 224) 100%, transparent 0%);
+  background-position: 0 0.94em;
+  background-repeat: repeat-x;
+  background-size: 10px 5px;
+  text-decoration: none;
+}
+
+main h2 a:hover {
+  background-image: linear-gradient(to right, #f6ad55 100%, transparent 0%);
+  background-position: 0 0.94em;
+  background-repeat: repeat-x;
+  background-size: 10px 5px;
+  text-decoration: none;
+}
+
 
 a.excerpt-link:hover .fancy-link {
   background-image: linear-gradient(to right, #f6ad55 100%, transparent 0%);
