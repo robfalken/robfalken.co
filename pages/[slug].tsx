@@ -33,10 +33,12 @@ type Props = {
   title: string;
 };
 
-const ArticlePage: NextPage<Props> = ({ title }) => {
+const ArticlePage: NextPage<Props> = ({ title, ...props }) => {
+  console.log(props);
   return (
     <div>
       <h1 className="font-display font-bold text-2xl">{title}</h1>
+      <article></article>
     </div>
   );
 };
