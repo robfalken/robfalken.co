@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: "Merriweather",
-        display: "Orelega One",
+        body: "Source Sans Pro",
+        display: "Playfair Display",
       },
     },
   },

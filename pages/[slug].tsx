@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
+import { Layout } from "../components/Layout";
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = fs.readdirSync("_posts").map((filename) => {
@@ -47,13 +48,15 @@ type Props = {
 
 const ArticlePage: NextPage<Props> = ({ title, html }) => {
   return (
-    <div>
-      <h1 className="font-display font-bold text-2xl">{title}</h1>
+    <Layout>
+      <h1 className="text-4xl font-display italic font-bold text-slate-700 mb-10">
+        {title}
+      </h1>
       <article
-        className="prose prose-headings:font-display"
+        className="prose prose-slate prose-headings:text-slate-700"
         dangerouslySetInnerHTML={{ __html: html }}
       />
-    </div>
+    </Layout>
   );
 };
 

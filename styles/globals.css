@@ -2,11 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap");
 
 html,
 body,
-div#__next
-{
+div#__next {
   height: 100%;
+}
+
+main h2 a {
+  background-image: linear-gradient(
+    to right,
+    rgba(203, 213, 224, 0.5) 100%,
+    transparent 0%
+  );
+  background-position: 0 1.06em;
+  background-repeat: repeat-x;
+  background-size: 10px 5px;
+  text-decoration: none;
+}
+
+main h2 a:hover {
+  background-image: linear-gradient(to right, #f6ad55 100%, transparent 0%);
 }
