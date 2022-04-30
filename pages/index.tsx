@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from "next";
+import { sortBy, prop, map, pipe } from "ramda";
 import { ListItem } from "../components/ListItem";
 import Head from "next/head";
 import fs from "fs";
@@ -10,15 +11,19 @@ interface Props {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const articles = fs.readdirSync("_posts").map((filename) => {
+  const filenames = fs.readdirSync("_posts");
+
+  const readAndParse = (filename: string) => {
     const slug = filename.replace(/\.mdx?$/, "");
     const file = fs.readFileSync(`_posts/${filename}`, "utf-8");
-    const { data: frontMatter } = matter(file);
+    const { data } = matter(file);
     return {
-      ...frontMatter,
+      ...data,
       slug,
     };
-  });
+  };
+
+  const articles = pipe(map(readAndParse), sortBy(prop("date")))(filenames);
 
   return {
     props: {

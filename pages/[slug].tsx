@@ -1,6 +1,9 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkHtml from "remark-html";
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = fs.readdirSync("_posts").map((filename) => {
@@ -18,12 +21,20 @@ export const getStaticPaths: GetStaticPaths = () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = ({ params: { slug } }) => {
+export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
   const file = fs.readFileSync(`_posts/${slug}.mdx`, "utf-8");
-  const { data: frontMatter } = matter(file);
+  const { data, content } = matter(file);
+
+  const { value } = await unified()
+    .use(remarkParse)
+    .use(remarkHtml)
+    .process(content);
+  console.log("html", value);
+
   return {
     props: {
-      ...frontMatter,
+      ...data,
+      html: value,
       slug,
     },
   };
@@ -31,14 +42,17 @@ export const getStaticProps: GetStaticProps = ({ params: { slug } }) => {
 
 type Props = {
   title: string;
+  html: string;
 };
 
-const ArticlePage: NextPage<Props> = ({ title, ...props }) => {
-  console.log(props);
+const ArticlePage: NextPage<Props> = ({ title, html }) => {
   return (
     <div>
       <h1 className="font-display font-bold text-2xl">{title}</h1>
-      <article></article>
+      <article
+        className="prose prose-headings:font-display"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </div>
   );
 };
