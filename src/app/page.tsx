@@ -1,16 +1,10 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <main className="flex items-center p-2">
-      <Image
-        src="/robfalken.png"
-        alt="Rob Falken"
-        width={32}
-        height={32}
-        className="rounded mr-2"
-      />
-      Rob Falken.
+    <main>
+      <h1 className="text-3xl">
+        Hello! I&apos;m Rob Falken, a dad and a tinkerer. CPO/CTO by trade.
+        Based in Stockholm, Sweden.
+      </h1>
     </main>
   );
 }
