@@ -1,8 +1,9 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { GitHubIcon } from "../components/GitHubIcon";
-import "./globals.css";
+import { LinkedInIcon } from "@/components/LinkedInIcon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <div className="h-0.5 bg-brand"></div>
         <div>
-          <div className="container mx-auto max-w-prose flex justify-between py-5 mb-5">
+          <div className="container mx-auto max-w-prose flex justify-between items-center py-5 mb-5">
             <div>
               <a href="/" className="font-bold text-sm hover:underline">
                 <Image
@@ -32,12 +34,18 @@ export default function RootLayout({
                 />
               </a>
             </div>
-            <div>
+            <div className="flex">
               <a
                 href="https://github.com/robfalken"
-                className="hover:bg-slate-100 hover:text-slate-900 text-slate-800 block p-1 rounded"
+                className="hover:bg-zinc-100 hover:text-zinc-800 text-zinc-300 block p-1 rounded"
               >
                 <GitHubIcon />
+              </a>
+              <a
+                href="https://linkedin.com/in/robertfalken"
+                className="hover:bg-sky-100 hover:text-sky-800 text-zinc-300 block p-1 rounded"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>

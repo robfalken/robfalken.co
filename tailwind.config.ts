@@ -7,7 +7,11 @@ const config: Config = {
     "./src/app/**/*.{ts,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: "#E93E71",
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };
