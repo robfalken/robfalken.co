@@ -11,6 +11,10 @@ const config: Config = {
       colors: {
         brand: "#E93E71",
       },
+      fontFamily: {
+        sans: ["var(--font-source-sans)", "sans-serif"],
+        serif: ["var(--font-source-serif)", "serif"],
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

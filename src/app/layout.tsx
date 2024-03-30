@@ -1,11 +1,21 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { Source_Serif_4, Source_Sans_3 } from "next/font/google";
 import { GitHubIcon } from "../components/GitHubIcon";
 import { LinkedInIcon } from "@/components/LinkedInIcon";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Source_Sans_3({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-sans",
+});
+
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-serif",
+});
 
 export const metadata: Metadata = {
   title: "Rob Falken",
@@ -18,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <body>
         <div className="h-0.5 bg-brand"></div>
         <div>
           <div className="container mx-auto max-w-prose flex justify-between items-center py-5 mb-5">
