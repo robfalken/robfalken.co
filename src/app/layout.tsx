@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
-        <div className="h-0.5 bg-brand"></div>
+        <div className="h-0.5 bg-gradient-to-r to-orange-400 from-brand"></div>
         <Topbar />
         <div className="container mx-auto max-w-prose">{children}</div>
       </body>
