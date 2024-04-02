@@ -1,18 +1,18 @@
 import { Topbar } from "@/components/Topbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Source_Serif_4, Source_Sans_3 } from "next/font/google";
+import { Source_Serif_4, Oswald } from "next/font/google";
 
-const sans = Source_Sans_3({
+const sans = Oswald({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-source-sans",
+  variable: "--font-sans",
 });
 
 const serif = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-source-serif",
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {

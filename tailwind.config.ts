@@ -12,8 +12,8 @@ const config: Config = {
         brand: "#E93E71",
       },
       fontFamily: {
-        sans: ["var(--font-source-sans)", "sans-serif"],
-        serif: ["var(--font-source-serif)", "serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
       },
     },
   },
